@@ -1,0 +1,44 @@
+<template>
+  <div class="card">
+    <div class="card-body">
+			<span><i click.trigger="back()" class="fa fa-arrow-left fa-lg"
+               aria-hidden="true"></i></span>
+    </div>
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="galleryInput">Gallery Name *</label>
+      <input value.bind="galleryObj.name" type="text" class="form-control"
+             id="galleryInput" aria-describedby="galleryHelp"
+             placeholder="Enter gallery name" value="galleryObj.name">
+      <small id="galleryHelp" class="form-text text-muted">
+        A gallery name.
+      </small>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 mt-3">
+        <label class="btn btn-secondary">
+          Browse for pictures <input type="file" style="display: none;" files.bind="files" change.delegate="changeFiles()" multiple>
+        </label>
+        <small id="fileHelp" class="form-text text-muted">
+          Upload images that you'd like to be part of the gallery.</small>
+      </div>
+      <div class="col-md-2 pull-right mt-3">
+        <button click.trigger="saveGallery()" class="btn btn-primary topMargin">Save</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-8">
+        <ul class="gallery-list">
+          <li repeat.for="file of filesToUpload" class="list-group-item">
+            ${file.name}<span click.delegate="removeFile($index)"
+                              class="pull-right"><i class="fa fa-trash" aria-hidden="true">
+						</i></span></li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</template>
+

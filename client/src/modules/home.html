@@ -1,0 +1,7 @@
+<template>
+  <div id="content-wrapper">
+    <h1>${message}</h1>
+    <compose show.bind="showLogin" view="./components/login.html"></compose>
+    <compose show.bind="!showLogin" view="./components/register.html"></compose>
+  </div>
+</template>

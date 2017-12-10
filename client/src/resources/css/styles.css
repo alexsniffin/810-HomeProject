@@ -1,0 +1,16 @@
+#content-wrapper {
+  margin: 0px 10%;
+}
+
+.rightMargin {
+  margin-right: 10px;
+}
+
+.gallery-list {
+  padding-left: 0;
+  margin-top: 5px;
+}
+
+.picture-card {
+  width: 240px;
+}

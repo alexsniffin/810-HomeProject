@@ -1,0 +1,28 @@
+<template>
+  <div id="content-wrapper">
+
+    <div class="row mt-2">
+      <div class="col-md-12 mb-2">
+        <span class="pull-left">
+          <h1>${message}</h1>
+        </span>
+
+        <div class="pt-3 pr-3 mr-5">
+          <span class="rightMargin pull-right">
+          <i click.trigger="logout()" class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+        </span>
+          <span class=" rightMargin pull-right">
+          <i click.trigger="createGallery()" class="fa fa-plus fa-lg" aria-hidden="true"></i>
+        </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <compose show.bind="showList" view="./components/myPicList.html"></compose>
+        <compose show.bind="!showList" view="./components/myPicForm.html"></compose>
+      </div>
+    </div>
+  </div>
+</template>

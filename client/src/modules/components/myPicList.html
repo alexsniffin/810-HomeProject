@@ -1,0 +1,45 @@
+<template>
+  <div class="row">
+    <div class="col-md-2 card mr-3 mb-3">
+      <div class="card-body">
+        <div show.bind="galleries.galleriesArray.length">
+          <h4>Your galleries:</h4>
+          <hr>
+          <div repeat.for="gallery of galleries.galleriesArray">
+            <span click.trigger="showGallery(gallery)">
+              ${gallery.name}
+            </span>
+            <div class="pull-right">
+              <i click.trigger="editGallery(gallery)" class="fa fa-pencil rightMargin" aria-hidden="true"></i>
+              <i click.trigger="deleteGallery(gallery)"class="fa fa-trash rightMargin" aria-hidden="true"></i>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div show.bind="!galleries.galleriesArray.length">
+          No galleries to show. Create a new gallery for it to show here.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 card">
+      <div class="card-body">
+        <div show.bind="currentGallery.length">
+          <div repeat.for="picture of currentGallery" style="display: inline-block">
+            <div class="card card-body picture-card ml-1 mr-1 mb-1">
+              ${picture.originalName}
+              <a href="${apiUrl}/galleries/user/${user._id}/${picture.filename}" width="200">
+                <img src="${apiUrl}/galleries/user/${user._id}/${picture.thumbFile}" width="200" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div show.bind="currentGallery == undefined">
+          Click on a gallery to view it's images.
+        </div>
+        <div show.bind="currentGallery != undefined && !currentGallery.length">
+          No images in this gallery, <b click.trigger="editGallery(gallery)">click here</b> to upload some!
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
