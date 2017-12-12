@@ -45,9 +45,9 @@ module.exports = function (app, config) {
         logger.log('Upload file for gallery ' + req.params.galleryId + ' and ' + req.params.userId, 'verbose');
 
         Gallery.findById(req.params.galleryId)
-            .then(async gallery => {
+            .then(gallery => {
                 if(req.files){
-                    await req.files.forEach(picture => {
+                    req.files.forEach(picture => {
                         thumb({
                             source: config.uploads + req.params.userId + "/" + picture.filename,
                             destination: config.uploads + req.params.userId + "/",
