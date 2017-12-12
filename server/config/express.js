@@ -50,19 +50,8 @@ module.exports = function (app, config) {
         require(controller);
     });
 
-    function One(req, res, next) {
-        res.set('X-One', 'One');
-        next();
-    }
-
-    function Two(req, res, next) {
-        res.set('X-Two', 'Two');
-        next();
-    }
-
-    app.get('/', [One, Two], function (req, res) {
-        res.send('Three');
-    });
+    // Set base route
+    app.get('/');
 
     require('../app/controllers/users')(app, config);
     require('../app/controllers/gallery')(app, config);

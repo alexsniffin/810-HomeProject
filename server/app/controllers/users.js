@@ -41,19 +41,21 @@ module.exports = function (app, config) {
     router.get('/users', requireAuth, function (req, res, next) {
         logger.log('Get all users', 'verbose');
 
-        var query = User.find()
-            .sort(req.query.order)
-            .exec()
-            .then(result => {
-                if(result && result.length) {
-                    res.status(200).json(result);
-                } else {
-                    res.status(404).json({message: "No users"});
-                }
-            })
-            .catch(err => {
-                return next(err);
-            });
+        user.save((err, user) => {
+            var query = User.find()
+                .sort(req.query.order)
+                .exec()
+                .then(result => {
+                    if (result && result.length) {
+                        res.status(200).json(result);
+                    } else {
+                        res.status(404).json({message: "No users"});
+                    }
+                })
+                .catch(err => {
+                    return next(err);
+                });
+        });
     });
 
     router.get('/user/:userId', requireAuth, function (req, res, next) {
